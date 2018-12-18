@@ -1,3 +1,3 @@
-# CS 1331 Homework
+# CS 1331 Work
 
-Past work; no currently open assignments will be added.
+Classwork and homework for Dr. Simpkins' CS 1331 (Fall 2018).
