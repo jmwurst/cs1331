@@ -41,9 +41,9 @@ public interface List<E> {
     int remove(E e);
 
     /**
-     * Counts the number of elements if e is contained
+     * Counts the number of times element e occurs in the list
      *
-     * @param e the element to be removed from the list
+     * @param e the element to be counted in the list
      * @return int representation of the count
     */
     int contains(E e);
@@ -58,6 +58,11 @@ public interface List<E> {
      *
     */
     void clear();
+    /**
+     * Counts the number of elements in the list
+     * @return int representing the number of elements in the list
+    */
+    int size();
    /**
     * Returns the E[] parameter containing as many non-null elements
     * in the list as it can fit

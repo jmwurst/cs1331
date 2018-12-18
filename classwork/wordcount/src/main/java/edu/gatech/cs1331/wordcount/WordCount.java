@@ -2,26 +2,46 @@ package edu.gatech.cs1331.wordcount;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Collection;
-import java.util.Scanner;
+import java.util.*;
 
 public class WordCount {
+
+    private class RankComparator implements Comparator<String> {
+        public int compare(String w1,  String w2) {
+            return 0;
+        }
+    }
+
+    private Map<String, Double> wordCounts;
 
     public WordCount(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
+        wordCounts = new HashMap<>();
+        double total = 0;
         while (scanner.hasNext()) {
             String curWord = scanner.next();
-            System.out.println(curWord);
+            if (wordCounts.containsKey(curWord)) {
+                double count = wordCounts.get(curWord);
+                wordCounts.put(curWord, count + 1.0);
+            } else {
+                wordCounts.put(curWord, 1.0);
+            }
+            total++;
+        }
+        for (String word : wordCounts.keySet()) {
+            wordCounts.put(word, wordCounts.get(word) / total);
         }
     }
 
     public Collection<String> getWords() {
-        return null;
+        TreeSet<String> sortedWords = new TreeSet<>(new RankComparator());
+        sortedWords.addAll(wordCounts.keySet());
+        return wordCounts.keySet();
     }
 
-    public int getCount(String word) {
-        return 0;
+    public double getCount(String word) {
+        return wordCounts.get(word);
     }
 
     public static void main(String[] args) throws FileNotFoundException {
